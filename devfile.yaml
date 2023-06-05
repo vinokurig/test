@@ -1,6 +1,11 @@
 schemaVersion: 2.1.0
 metadata:
   name: che-server-in-che
+projects:
+  - git:
+      remotes:
+        origin: https://github.com/eclipse/che-server.git
+    name: test
 components:
   - attributes:
       controller.devfile.io/merge-contribution: true
