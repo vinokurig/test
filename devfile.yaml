@@ -1,3 +1,60 @@
-schemaVersion: 2.2.0
+schemaVersion: 2.1.0
 metadata:
-  name: bash
+  name: che-server-in-che
+attributes:
+  controller.devfile.io/devworkspace-config:
+    name: devworkspace-config
+    namespace: dogfooding
+  controller.devfile.io/scc: container-build
+  controller.devfile.io/storage-type: per-workspace
+components:
+  - attributes:
+      controller.devfile.io/merge-contribution: true
+    container:
+      command:
+        - tail
+        - '-f'
+        - /dev/null
+      endpoints:
+        - exposure: public
+          name: http-maven
+          protocol: http
+          targetPort: 8080
+        - exposure: none
+          name: debug
+          protocol: http
+          targetPort: 5858
+      env:
+        - name: DEBUG_PORT
+          value: '5858'
+        - name: CHE_DASHBOARD_URL
+          value: https://che-dogfooding.apps.che-dev.x6e0.p1.openshiftapps.com
+        - name: CHE_PLUGIN_REGISTRY_URL
+          value: https://che-dogfooding.apps.che-dev.x6e0.p1.openshiftapps.com/plugin-registry/v3
+        - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
+          value: http://plugin-registry.dogfooding.svc:8080/v3
+        - name: CLUSTER_CONSOLE_URL
+          value: https://console-openshift-console.apps.che-dev.x6e0.p1.openshiftapps.com
+        - name: CLUSTER_CONSOLE_TITLE
+          value: OpenShift console
+        - name: OPENVSX_REGISTRY_URL
+          value: https://open-vsx.org/
+      image: registry.access.redhat.com/ubi8/openjdk-11:latest
+      memoryLimit: 2Gi
+      mountSources: true
+      sourceMapping: /projects
+      volumeMounts:
+        - name: m2
+          path: /home/user/.m2
+    name: tools
+  - name: m2
+    volume: {}
+commands:
+  - exec:
+      commandLine: mvn clean install -DskipTests
+      component: maven
+      group:
+        isDefault: true
+        kind: build
+      workingDir: ${PROJECT_SOURCE}
+    id: mvn-build
