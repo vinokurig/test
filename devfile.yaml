@@ -7,20 +7,21 @@ components:
     container:
       env:
         - name: CHE_DASHBOARD_URL
-          value: https://che-dogfooding.apps.che-dev.x6e0.p1.openshiftapps.com
+          value: 'https://che-dogfooding.apps.che-dev.x6e0.p1.openshiftapps.com'
         - name: CHE_PLUGIN_REGISTRY_URL
-          value: https://che-dogfooding.apps.che-dev.x6e0.p1.openshiftapps.com/plugin-registry/v3
+          value: >-
+            https://che-dogfooding.apps.che-dev.x6e0.p1.openshiftapps.com/plugin-registry/v3
         - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
-          value: http://plugin-registry.dogfooding.svc:8080/v3
+          value: 'http://plugin-registry.dogfooding.svc:8080/v3'
         - name: CLUSTER_CONSOLE_URL
-          value: https://console-openshift-console.apps.che-dev.x6e0.p1.openshiftapps.com
+          value: >-
+            https://console-openshift-console.apps.che-dev.x6e0.p1.openshiftapps.com
         - name: CLUSTER_CONSOLE_TITLE
           value: OpenShift console
         - name: OPENVSX_REGISTRY_URL
-          value: https://open-vsx.org/
-      image: quay.io/devfile/universal-developer-image:ubi8-latest
-      sourceMapping: /projects
-    memoryLimit: 2Gi
+          value: 'https://open-vsx.org/'
+      image: 'quay.io/devfile/universal-developer-image:ubi8-latest'
+      memoryLimit: 2Gi
       mountSources: true
       sourceMapping: /projects
       volumeMounts:
@@ -36,5 +37,5 @@ commands:
       group:
         isDefault: true
         kind: build
-      workingDir: ${PROJECT_SOURCE}
+      workingDir: '${PROJECT_SOURCE}'
     id: mvn-build
