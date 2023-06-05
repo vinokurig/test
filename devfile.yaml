@@ -4,7 +4,7 @@ metadata:
 projects:
   - git:
       remotes:
-        origin: https://github.com/eclipse/che-server.git
+        origin: https://github.com/eclipse-che/che-server.git
     name: test
 components:
   - attributes:
