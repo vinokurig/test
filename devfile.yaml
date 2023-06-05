@@ -5,7 +5,7 @@ projects:
   - git:
       remotes:
         origin: https://github.com/eclipse-che/che-server.git
-    name: test
+    name: che-server
 components:
   - attributes:
       controller.devfile.io/merge-contribution: true
