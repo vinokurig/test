@@ -1,32 +1,11 @@
 schemaVersion: 2.1.0
 metadata:
   name: che-server-in-che
-attributes:
-  controller.devfile.io/devworkspace-config:
-    name: devworkspace-config
-    namespace: dogfooding
-  controller.devfile.io/scc: container-build
-  controller.devfile.io/storage-type: per-workspace
 components:
   - attributes:
       controller.devfile.io/merge-contribution: true
     container:
-      command:
-        - tail
-        - '-f'
-        - /dev/null
-      endpoints:
-        - exposure: public
-          name: http-maven
-          protocol: http
-          targetPort: 8080
-        - exposure: none
-          name: debug
-          protocol: http
-          targetPort: 5858
       env:
-        - name: DEBUG_PORT
-          value: '5858'
         - name: CHE_DASHBOARD_URL
           value: https://che-dogfooding.apps.che-dev.x6e0.p1.openshiftapps.com
         - name: CHE_PLUGIN_REGISTRY_URL
@@ -39,8 +18,9 @@ components:
           value: OpenShift console
         - name: OPENVSX_REGISTRY_URL
           value: https://open-vsx.org/
-      image: registry.access.redhat.com/ubi8/openjdk-11:latest
-      memoryLimit: 2Gi
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      sourceMapping: /projects
+    memoryLimit: 2Gi
       mountSources: true
       sourceMapping: /projects
       volumeMounts:
