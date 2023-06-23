@@ -1,8 +1,16 @@
+schemaVersion: 2.2.0
 metadata:
-    name: bash
+  name: empty-dhuk
+  namespace: vinokurig-che
+attributes:
+  controller.devfile.io/devworkspace-config:
+    name: devworkspace-config
+    namespace: dogfooding
+  controller.devfile.io/scc: container-build
+  controller.devfile.io/storage-type: per-workspace
 projects:
-    - name: test
-      git:
+  - name: test
+    git:
         remotes:
           origin: >-
             https://bitbucket-bitbucket.apps.cluster-sz7h7.sz7h7.sandbox2346.opentlc.com/scm/~ivinokur/test.git
