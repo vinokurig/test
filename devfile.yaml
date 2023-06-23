@@ -1,11 +1,10 @@
-schemaVersion: 2.1.0
-      metadata:
-        name: bash
-      projects:
-        - name: test
-          git:
-            remotes:
-              origin: >-
-                https://bitbucket-bitbucket.apps.cluster-sz7h7.sz7h7.sandbox2346.opentlc.com/scm/~ivinokur/test.git
-            checkoutFrom:
-              revision: refs%2Fheads%2Fntestbranch
+metadata:
+    name: bash
+projects:
+    - name: test
+      git:
+        remotes:
+          origin: >-
+            https://bitbucket-bitbucket.apps.cluster-sz7h7.sz7h7.sandbox2346.opentlc.com/scm/~ivinokur/test.git
+        checkoutFrom:
+          revision: refs%2Fheads%2Fntestbranch
