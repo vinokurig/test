@@ -23,7 +23,7 @@ components:
   - container:
       endpoints:
         - name: https-react
-          targetPort: 3010
+          targetPort: 3000
           protocol: https
       image: registry.access.redhat.com/ubi8/nodejs-16:1-153
       args: ['tail', '-f', '/dev/null']
