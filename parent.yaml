@@ -1,0 +1,18 @@
+schemaVersion: 2.2.0
+metadata:
+  name: parent-devfile
+components:
+  - name: tools
+    attributes:
+       controller.devfile.io/merge-contribution: true
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      env:
+        - name: PARENT_ENV_VAR
+          value: 'true'
+commands:
+  - id: parent-command
+    exec:
+      label: '2. This command from the parent'
+      component: tools
+      commandLine: echo "Hello from parent"
