@@ -46,6 +46,11 @@ commands:
   - id: deployk8s
     apply:
       component: kubernetes-deploy
+  - id: test-run
+    exec:
+      component: image-build
+      commandLine: 'echo test'
+      workingDir: ${PROJECT_SOURCE}
   - id: deploy
     composite:
       commands:
@@ -56,4 +61,4 @@ commands:
         isDefault: true
 events:
   postStart:
-    - build-image
+    - test-run
