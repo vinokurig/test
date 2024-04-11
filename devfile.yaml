@@ -1,5 +1,11 @@
 schemaVersion: 2.2.0
 metadata:
-  name: sample-using-parent
-parent:
-  uri: https://raw.githubusercontent.com/vinokurig/test/master/parent.yaml
+  name: test
+components:
+  - name: tools
+    container:
+      image: registry.access.redhat.com/ubi8/openjdk-17:1.18-2
+      endpoints:
+        - name: https-quarkus
+          targetPort: 8080
+          protocol: https
