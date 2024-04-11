@@ -1,64 +1,142 @@
-schemaVersion: 2.2.0
+schemaVersion: 2.1.0
 metadata:
-  name: java-springboot
-  version: 1.2.1
-  attributes:
-    alpha.dockerimage-port: 8081
-  displayName: Spring Boot®
-  description: Spring Boot® using Maven
-  icon: https://raw.githubusercontent.com/devfile-samples/devfile-stack-icons/main/spring.svg
+  name: java-vertx
+  displayName: Vert.x Java
+  description: Java application using Vert.x and OpenJDK 11
+  icon: https://raw.githubusercontent.com/vertx-web-site/vertx-logo/master/vertx-logo.svg
   tags:
     - Java
-    - Spring
-  projectType: springboot
+    - Vert.x
+  projectType: Vert.x
   language: Java
-  provider: Red Hat
-  supportUrl: https://github.com/devfile-samples/devfile-support#support-information
-parent:
-  id: java-springboot
-  registryUrl: 'https://registry.devfile.io'
-  version: 1.2.0
+  version: 1.3.0
+starterProjects:
+  - name: vertx-http-example
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-http-example
+  - name: vertx-istio-circuit-breaker-booster
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-istio-circuit-breaker-booster
+  - name: vertx-istio-routing-booster
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-istio-routing-booster
+  - name: vertx-secured-http-example-redhat
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-secured-http-example-redhat
+  - name: vertx-crud-example-redhat
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-crud-example-redhat
+  - name: vertx-istio-security-booster
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-istio-security-booster
+  - name: vertx-crud-example
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-crud-example
+  - name: vertx-circuit-breaker-example
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-circuit-breaker-example
+  - name: vertx-configmap-example
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-configmap-example
+  - name: vertx-circuit-breaker-example-redhat
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-circuit-breaker-example-redhat
+  - name: vertx-cache-example-redhat
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-cache-example-redhat
+  - name: vertx-cache-example
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-cache-example
+  - name: vertx-secured-http-example
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-secured-http-example
+  - name: vertx-health-checks-example-redhat
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-health-checks-example-redhat
+  - name: vertx-http-example-redhat
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-http-example-redhat
+  - name: vertx-health-checks-example
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-health-checks-example
+  - name: vertx-configmap-example-redhat
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-configmap-example-redhat
+  - name: vertx-messaging-work-queue-booster
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-messaging-work-queue-booster
+  - name: vertx-istio-distributed-tracing-booster
+    git:
+      remotes:
+        origin: https://github.com/openshift-vertx-examples/vertx-istio-distributed-tracing-booster
 components:
-  - name: image-build
-    image:
-      imageName: java-springboot-image:latest
-      dockerfile:
-        uri: docker/Dockerfile
-        buildContext: .
-        rootRequired: false
-  - name: kubernetes-deploy
-    attributes:
-      deployment/replicas: 1
-      deployment/cpuRequest: 10m
-      deployment/memoryRequest: 180Mi
-      deployment/container-port: 8081
-    kubernetes:
-      uri: deploy.yaml
+  - name: runtime
+    container:
       endpoints:
-        - name: http-8081
-          targetPort: 8081
+        - exposure: public
           path: /
-          secure: true
+          name: http-vertx
+          targetPort: 8080
+          protocol: http
+        - exposure: none
+          name: debug
+          targetPort: 5858
+      image: registry.access.redhat.com/ubi8/openjdk-11:1.18-2.1705602259
+      command: ["tail", "-f", "/dev/null"]
+      memoryLimit: 512Mi
+      mountSources: true
+      volumeMounts:
+        - name: m2
+          path: /home/user/.m2
+      env:
+        - name: DEBUG_PORT
+          value: '5858'
+  - name: m2
+    volume:
+      size: 3Gi
 commands:
-  - id: build-image
-    apply:
-      component: image-build
-  - id: deployk8s
-    apply:
-      component: kubernetes-deploy
-  - id: test-run
+  - id: mvn-package
     exec:
-      component: image-build
-      commandLine: 'echo test'
+      commandLine: mvn package -Dmaven.test.skip=true
+      component: runtime
       workingDir: ${PROJECT_SOURCE}
-  - id: deploy
-    composite:
-      commands:
-        - build-image
-        - deployk8s
       group:
-        kind: deploy
         isDefault: true
+        kind: build
+  - id: run
+    exec:
+      commandLine: mvn io.reactiverse:vertx-maven-plugin:run
+      component: runtime
+      workingDir: ${PROJECT_SOURCE}
+      group:
+        isDefault: true
+        kind: run
+  - id: debug
+    exec:
+      commandLine: mvn io.reactiverse:vertx-maven-plugin:debug -Ddebug.port=${DEBUG_PORT}
+      component: runtime
+      workingDir: ${PROJECT_SOURCE}
+      group:
+        isDefault: true
+        kind: debug
 events:
   postStart:
-    - test-run
+    - mvn-package
