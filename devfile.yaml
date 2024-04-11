@@ -1,3 +1,16 @@
+schemaVersion: 2.1.0
+metadata:
+  name: java-quarkus
+  displayName: Quarkus Java
+  description: Java application using Quarkus and OpenJDK 17
+  icon: https://design.jboss.org/quarkus/logo/final/SVG/quarkus_icon_rgb_default.svg
+  tags:
+    - Java
+    - Quarkus
+  projectType: Quarkus
+  language: Java
+  version: 1.3.0
+  website: https://quarkus.io
 starterProjects:
   - name: community
     zip:
@@ -16,9 +29,8 @@ components:
         - name: m2
           path: /home/user/.m2
       endpoints:
-        - name: https-quarkus
+        - name: http-quarkus
           targetPort: 8080
-          protocol: https
         - exposure: none
           name: debug
           targetPort: 5858
