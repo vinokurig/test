@@ -4,7 +4,7 @@ metadata:
 components:
   - name: tools
     container:
-      image: registry.access.redhat.com/ubi8/openjdk-17:1.18-2
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
       endpoints:
         - name: https-quarkus
           targetPort: 8080
