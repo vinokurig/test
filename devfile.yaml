@@ -2,12 +2,30 @@ schemaVersion: 2.2.0
 metadata:
   name: test
 components:
-  - name: universal-developer-image
+  - name: tools
     container:
       image: registry.access.redhat.com/ubi8/openjdk-17:1.18-2
+      args: ['tail', '-f', '/dev/null']
+      memoryLimit: 1024Mi ## default app nowhere needs this but leaving room for expansion.
+      mountSources: true
+      volumeMounts:
+        - name: m2
+          path: /home/user/.m2
+      endpoints:
+        - name: https-quarkus
+          targetPort: 8080
+          protocol: https
+          attributes:
+            urlRewriteSupported: 'true'
+        - exposure: none
+          name: debug
+          targetPort: 5858
+      env:
+        - name: DEBUG_PORT
+          value: '5858'
 commands:
   - id: echo
     exec:
-      component: universal-developer-image
+      component: tools
       commandLine: 'mvn -Dmaven.repo.local=/home/user/.m2/repository --version'
       workingDir: ${PROJECT_SOURCE}
