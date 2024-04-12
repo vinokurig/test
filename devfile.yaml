@@ -32,7 +32,6 @@ components:
         - name: https-quarkus
           targetPort: 8080
           protocol: https
-          secure: true
         - exposure: none
           name: debug
           targetPort: 5858
