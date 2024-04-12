@@ -9,7 +9,7 @@ commands:
   - id: echo
     exec:
       component: universal-developer-image
-      commandLine: echo 'test'
+      commandLine: 'mvn -Dmaven.repo.local=/home/user/.m2/repository --version'
       workingDir: ${PROJECT_SOURCE}
 events:
   postStart:
