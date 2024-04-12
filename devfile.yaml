@@ -8,6 +8,7 @@ components:
 commands:
   - id: echo
     exec:
+      component: universal-developer-image
       commandLine: echo 'test'
       workingDir: ${PROJECT_SOURCE}
 events:
