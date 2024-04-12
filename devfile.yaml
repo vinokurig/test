@@ -4,7 +4,7 @@ metadata:
 components:
   - name: universal-developer-image
     container:
-      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      image: registry.access.redhat.com/ubi8/openjdk-17:1.18-2
 commands:
   - id: echo
     exec:
