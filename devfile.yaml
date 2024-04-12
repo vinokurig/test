@@ -47,7 +47,7 @@ commands:
   - id: init-compile
     exec:
       component: tools
-      commandLine: 'mvn -Dmaven.repo.local=/home/user/.m2/repository --version'
+      commandLine: 'mvn -Dmaven.repo.local=/home/user/.m2/repository compile'
       workingDir: ${PROJECT_SOURCE}
   - id: dev-run
     exec:
