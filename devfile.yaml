@@ -11,6 +11,3 @@ commands:
       component: universal-developer-image
       commandLine: 'mvn -Dmaven.repo.local=/home/user/.m2/repository --version'
       workingDir: ${PROJECT_SOURCE}
-events:
-  postStart:
-    - echo
