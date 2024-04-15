@@ -14,14 +14,14 @@ metadata:
 starterProjects:
   - name: community
     zip:
-      location: https://code.quarkus.io/d?e=io.quarkus%3Aquarkus-resteasy&e=io.quarkus%3Aquarkus-micrometer&e=io.quarkus%3Aquarkus-smallrye-health&e=io.quarkus%3Aquarkus-openshift&cn=devfile
+      location: https://code.quarkus.io/d?e=io.quarkus%3Aquarkus-resteasy&e=io.quarkus%3Aquarkus-micrometer&e=io.quarkus%3Aquarkus-smallrye-health&e=io.quarkus%3Aquarkus-openshift&cn=devfile@j=17
   - name: redhat-product
     zip:
       location: https://code.quarkus.redhat.com/d?e=io.quarkus%3Aquarkus-resteasy&e=io.quarkus%3Aquarkus-smallrye-health&e=io.quarkus%3Aquarkus-openshift
 components:
   - name: tools
     container:
-      image: registry.access.redhat.com/ubi8/openjdk-21:1.19-1
+      image: registry.access.redhat.com/ubi8/openjdk-17:1.18-2
       args: ['tail', '-f', '/dev/null']
       memoryLimit: 1024Mi ## default app nowhere needs this but leaving room for expansion.
       mountSources: true
@@ -45,7 +45,7 @@ commands:
   - id: init-compile
     exec:
       component: tools
-      commandLine: 'mvn -Dmaven.repo.local=/home/user/.m2/repository --version'
+      commandLine: 'mvn -Dmaven.repo.local=/home/user/.m2/repository compile'
       workingDir: ${PROJECT_SOURCE}
   - id: dev-run
     exec:
