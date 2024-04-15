@@ -33,6 +33,8 @@ components:
           targetPort: 8080
           protocol: https
           secure: true
+          attributes: 
+            urlRewriteSupported: 'true'
         - exposure: none
           name: debug
           targetPort: 5858
