@@ -33,7 +33,7 @@ components:
           targetPort: 8080
           protocol: https
           secure: true
-          path: /q/dev-ui/welcome
+          path: /
           attributes: 
             urlRewriteSupported: 'true'
         - exposure: none
