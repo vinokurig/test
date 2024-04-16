@@ -32,7 +32,6 @@ components:
         - name: https-quarkus
           targetPort: 8080
           protocol: https
-          path: /path
           attributes: 
             urlRewriteSupported: 'true'
         - exposure: none
