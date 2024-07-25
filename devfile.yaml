@@ -1,6 +1,11 @@
 schemaVersion: 2.3.0
 metadata:
   name: test
+projects:
+  - git:
+      remotes:
+        origin: git@github.com:vinokurig/test.git
+    name: test
 components:
   - name: universal-developer-image
     container:
