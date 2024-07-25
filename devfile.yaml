@@ -5,6 +5,11 @@ components:
   - name: universal-developer-image
     container:
       image: quay.io/devfile/universal-developer-image:ubi8-latest
+      env:
+        - name: SSH_ASKPASS_REQUIRE
+          value: 'force'
+        - name: SSH_ASKPASS
+          value: '/askpasss.sh'
 commands:
   - id: init
     exec:
