@@ -13,8 +13,6 @@ components:
       env:
         - name: SSH_ASKPASS_REQUIRE
           value: 'force'
-        - name: SSH_ASKPASS
-          value: '/askpasss.sh'
 commands:
   - id: init
     exec:
