@@ -9,7 +9,7 @@ commands:
   - id: init
     exec:
       component: universal-developer-image
-      commandLine: 'SSH_ASKPASS_REQUIRE=force SSH_ASKPASS="/askpasss.sh" ssh -T git@github.com'
+      commandLine: 'SSH_ASKPASS_REQUIRE=force SSH_ASKPASS="/askpasss.sh" ssh -T git@github.com > /projects/file.txt'
       workingDir: ${PROJECT_SOURCE}
 events:
   postStart:
