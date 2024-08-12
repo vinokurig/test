@@ -14,7 +14,7 @@ commands:
   - id: init-compile
     exec:
       component: universal-developer-image
-      commandLine: 'export TEST_ENV=test-env'
+      commandLine: 'touch /projects/test-dir'
       workingDir: ${PROJECT_SOURCE}
 events:
   postStart:
