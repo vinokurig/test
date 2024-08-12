@@ -6,3 +6,16 @@ projects:
       remotes:
         origin: git@github.com:vinokurig/test.git
     name: test
+components:
+  - name: universal-developer-image
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
+commands:
+  - id: init-compile
+    exec:
+      component: universal-developer-image
+      commandLine: 'echo Hello'
+      workingDir: ${PROJECT_SOURCE}
+events:
+  postStart:
+    - init-compile
