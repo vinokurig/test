@@ -1,6 +1,6 @@
 schemaVersion: 2.2.0
 metadata:
-  name: parent-devfile-1
+  name: parent-devfile-2
 components:
   - name: tools
     attributes:
