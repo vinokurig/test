@@ -10,6 +10,9 @@ components:
   - name: universal-developer-image
     container:
       image: quay.io/devfile/universal-developer-image:ubi8-latest
+      env:
+        - name: DISPLAY
+          value: ':0'
 commands:
   - id: init-compile
     exec:
