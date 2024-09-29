@@ -13,6 +13,7 @@ components:
       env:
         - name: DISPLAY
           value: ':0'
+  - name: new name
 commands:
   - id: init-compile
     exec:
