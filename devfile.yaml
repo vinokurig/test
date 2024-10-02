@@ -5,7 +5,6 @@ projects:
   - git:
       remotes:
         origin: git@github.com:vinokurig/test.git
-    name: test master 1
 components:
   - name: universal-developer-image
     container:
