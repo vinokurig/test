@@ -5,5 +5,5 @@ components:
   - name: universal-developer-image
     container:
       image: quay.io/devfile/universal-developer-image:ubi8-latest
-      memoryRequest: 1000Gi
-      memoryLimit: 1000Gi
+      memoryRequest: 10Gi
+      memoryLimit: 10Gi
