@@ -2,6 +2,9 @@ schemaVersion: 2.3.0
 metadata:
   name: test local
 components:
+  - name: ollama
+    container:
+      image: docker.io/ollama/ollama:0.3.13
   - name: universal-developer-image
     container:
       image: quay.io/devfile/universal-developer-image:ubi8-latest
