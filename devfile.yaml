@@ -4,7 +4,7 @@ metadata:
 components:
   - name: ollama
     container:
-      image: docker.io/ollama/ollama:0.3.13
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
   - name: universal-developer-image
     container:
       image: quay.io/devfile/universal-developer-image:ubi8-latest
