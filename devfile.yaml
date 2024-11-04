@@ -4,5 +4,5 @@ metadata:
 components:
   - name: universal-developer-image
     container:
-      image: registry.redhat.io/devspaces/udi-rhel8@sha256:9012e74424f19d0acb79b24a8c6b61fd55a2e3935b1addfbab13ac0daefbed41
+      image: ghcr.io/l0rd/outyet@sha256:b83e158687d6cb3d7ae46382be1e4fbb8eb3572f3423a9c3c9beae6cd55cc0e8
       mountSources: false
