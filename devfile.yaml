@@ -2,7 +2,7 @@ schemaVersion: 2.3.0
 metadata:
   name: test
 components:
-  - name: universal-developer-image
+  - name: dev
     container:
       image: ghcr.io/l0rd/outyet-dev:latest
       memoryRequest: 2G
@@ -10,6 +10,7 @@ components:
       cpuRequest: '1'
       cpuLimit: '4'
       mountSources: true
+  - name: outyet
     container:
       image: ghcr.io/l0rd/outyet@sha256:b83e158687d6cb3d7ae46382be1e4fbb8eb3572f3423a9c3c9beae6cd55cc0e8
       mountSources: false
