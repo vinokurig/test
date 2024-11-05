@@ -1,16 +1,3 @@
 schemaVersion: 2.3.0
 metadata:
   name: test
-components:
-  - name: dev
-    container:
-      image: registry.redhat.io/devspaces/udi-rhel8@sha256:9012e74424f19d0acb79b24a8c6b61fd55a2e3935b1addfbab13ac0daefbed41
-      memoryRequest: 2G
-      memoryLimit: 10G
-      cpuRequest: '1'
-      cpuLimit: '4'
-      mountSources: true
-  - name: outyet
-    container:
-      image: registry.redhat.io/devspaces/udi-rhel8@sha256:9012e74424f19d0acb79b24a8c6b61fd55a2e3935b1addfbab13ac0daefbed41
-      mountSources: false
