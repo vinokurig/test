@@ -1,10 +1,47 @@
-schemaVersion: 2.3.0
-metadata:
-  name: test
 components:
-  - name: universal-developer-image
+  - name: tools
     container:
-      image: quay.io/devfile/universal-developer-image:ubi8-latest
-  - name: test
-    container:
-      image: ghcr.io/l0rd/outyet@sha256:3ab91b5801ab2e2a6147cab5d4a959838d9318921298e84cf7b6d19a3359e496
+      image: quay.io/devfile/universal-developer-image:latest
+      memoryLimit: 8Gi
+      memoryRequest: 1Gi
+      cpuLimit: "2"
+      cpuRequest: 200m
+      env:
+        - name: KUBEDOCK_PARAMS
+          value: "--reverse-proxy --kubeconfig /home/user/.kube/config --initimage quay.io/agiertli/kubedock:0.13.0"
+        - name: USE_JAVA17
+          value: "true"
+        - value: /home/jboss/.m2
+          name: MAVEN_CONFIG
+        - value: -Xmx4G -Xss128M -XX:MetaspaceSize=1G -XX:MaxMetaspaceSize=2G
+          name: MAVEN_OPTS
+        - name: KUBEDOCK_ENABLED
+          value: 'true'
+        - name: DOCKER_HOST
+          value: 'tcp://127.0.0.1:2475'
+        - name: TESTCONTAINERS_RYUK_DISABLED
+          value: 'true'
+        - name: TESTCONTAINERS_CHECKS_DISABLE
+          value: 'true'
+      endpoints:
+        - exposure: none
+          name: kubedock
+          protocol: tcp
+          targetPort: 2475
+        - exposure: public
+          name: http-booster
+          protocol: http
+          targetPort: 8080
+          attributes:
+            discoverable: true
+            urlRewriteSupported: true
+        - exposure: internal
+          name: debug
+          protocol: http
+          targetPort: 5005
+      volumeMounts:
+        - name: m2
+          path: /home/user/.m2
+  - name: m2
+    volume:
+      size: 10G
