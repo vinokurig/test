@@ -5,4 +5,4 @@ metadata:
 components:
   - name: universal-developer-image
     container:
-      image: d3fk/kubectl:latest
+      image: bitnami/kubectl
