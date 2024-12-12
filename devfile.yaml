@@ -5,4 +5,4 @@ metadata:
 components:
   - name: universal-developer-image
     container:
-      image: quay.io/ivinokur/universal-developer-image:ubi8-latest
+      image: d3fk/kubectl:latest
