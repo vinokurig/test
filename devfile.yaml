@@ -1,8 +1,10 @@
-schemaVersion: 2.2.0
+schemaVersion: 2.3.0
 metadata:
-  name: empty-bnjf
-  namespace: cluster-admin-che
+  name: test
 components:
   - name: universal-developer-image
     container:
-      image: bitnami/kubectl
+      image: quay.io/devfile/universal-developer-image:ubi9-latest
+  - name: test
+    container:
+      image: d3fk/kubectl:latest
