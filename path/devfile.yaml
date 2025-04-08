@@ -1,8 +1,8 @@
 schemaVersion: 2.3.0
 metadata:
   name: test
-starterProjects:
-  - name: testclone
+projects:
+  - name: clone
     git:
       checkoutFrom:
         revision: test
