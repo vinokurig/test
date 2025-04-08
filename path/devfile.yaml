@@ -5,7 +5,7 @@ starterProjects:
   - name: testclone
     git:
       checkoutFrom:
-        revision: master
+        revision: test
       remotes:
         origin: https://github.com/vinokurig/test.git
 commands:
