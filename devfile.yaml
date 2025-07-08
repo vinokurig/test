@@ -9,7 +9,7 @@ projects:
       remotes:
         origin: https://github.com/vinokurig/test.git
 commands:
-  - id: installdependencies
+  - id: test
     exec:
       component: universal-developer-image
       workingDir: ${PROJECT_SOURCE}
