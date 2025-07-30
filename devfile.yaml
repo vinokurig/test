@@ -2,12 +2,12 @@ schemaVersion: 2.3.0
 metadata:
   name: test
 projects:
-  - name: clone
+  - name: testProject
     git:
       checkoutFrom:
         revision: test
       remotes:
-        origin: https://github.com/vinokurig/test.git
+        origin: git@github.com:vinokurig/test.git
 commands:
   - id: test
     exec:
