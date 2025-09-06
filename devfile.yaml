@@ -1,13 +1,6 @@
 schemaVersion: 2.3.0
 metadata:
   name: test
-projects:
-  - name: clone
-    git:
-      checkoutFrom:
-        revision: test
-      remotes:
-        origin: https://github.com/vinokurig/test.git
 commands:
   - id: installdependencies
     exec:
