@@ -1,0 +1,11 @@
+schemaVersion: 2.3.0
+metadata:
+  name: test
+commands:
+  - id: test
+    exec:
+      component: universal-developer-image
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: "echo hello"
+      group:
+        kind: run
