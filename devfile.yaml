@@ -2,7 +2,7 @@ schemaVersion: 2.3.0
 metadata:
   name: test
 commands:
-  - id: installdependencies
+  - id: main
     exec:
       component: universal-developer-image
       workingDir: ${PROJECT_SOURCE}
